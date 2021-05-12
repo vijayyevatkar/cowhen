@@ -12,5 +12,5 @@ A simple Python script to remind you of a vaccination slot in your District
    $ python3 remindByDistrict.py  
 3. You will get 3 prompts -> District ID, Next 'n' days to be reminded about and phone number.
 4. Refer your district_id from the ```districtNames.txt``` file that is present.
-5. And, your phone number is needed to copy it to the clipboard. Once a slot is found, the cowin portal is opened and your mobile number is copied.
+5. And, your phone number is needed to copy it to the clipboard. Once a slot is found, the cowin portal is opened automatically and your mobile number is copied to the clipboard.
 6. All you have to do is just paste it, click on Get OTP and then book the slot quickly.
