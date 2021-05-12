@@ -7,9 +7,9 @@ A simple Python script to remind you of a vaccination slot in your District
 
 # Steps to Run
 1. Install Python3 (Skip this if you have python3): <https://docs.python-guide.org/starting/install3/osx/>
-2. Open Terminal and run the following.
-   $ sudo pip install requests
-   $ python3 remindByDistrict.py
+2. Open Terminal and run the following.  
+   $ sudo pip install requests  
+   $ python3 remindByDistrict.py  
 3. You will get 3 prompts -> District ID, Next 'n' days to be reminded about and phone number.
 4. Refer your district_id from the ```districtNames.txt``` file that is present.
 5. And, your phone number is needed to copy it to the clipboard. Once a slot is found, the cowin portal is opened and your mobile number is copied.
