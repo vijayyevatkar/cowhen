@@ -10,6 +10,7 @@ A simple Python script to remind you of a vaccination slot in your District
 # Pre-requisites
 1. Python3 is required to run the packages and install dependencies.
 2. (Optional) - If on Macbook, Go to System Preferences -> Notifications -> Script Editor => Allow notifications and choose "Alerts". This ensures the notification doesn't timeout.
+3. (Optional) - If on Windows, Check out this issue to keep your notifications for longer durations => <https://github.com/kivy/plyer/issues/503#issuecomment-780079928>
 
 # Steps to Run on Macbook
 1. Install Python3 (Skip this if you have python3):  <https://docs.python-guide.org/starting/install3/osx/>
