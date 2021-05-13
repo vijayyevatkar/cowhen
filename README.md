@@ -13,19 +13,21 @@ A simple Python script to remind you of a vaccination slot in your District
 
 # Steps to Run on Macbook
 1. Install Python3 (Skip this if you have python3):  <https://docs.python-guide.org/starting/install3/osx/>
-2. Open Terminal on Mac and run the following.  
+2. Clone the repo or download the zip and cd to the downloaded directory.
+3. Open Terminal and run the following.  
    $ python3 pip install requests  
    $ python3 remindByDistrict.py  
-3. Follow on screen instructions and the script will keep running in the background.
-4. Get back to your daily work 🤷‍♂️
+4. Follow on screen instructions and the script will keep running in the background.
+5. Get back to your daily work 🤷‍♂️
 
 # Steps to Run on Windows 10
 1. Install Python3 (Skip this if you have python3):  
    a. Just Open command prompt and type "python3" and hit enter. Microsoft store will be opened and python3 is free there. Just click on install!
-2. Open Command Prompt on Windows and run the following.  
+2. Clone the repo or download the zip and cd to the downloaded directory.
+3. Open Command Prompt on Windows and run the following.  
    $ python3 installDependencies.py     
    $ python3 remindByDistrict.py    
-3. Follow on screen instructions and the script will keep running in the background.
-4. Get back to your daily work 🤷‍♂️
+4. Follow on screen instructions and the script will keep running in the background.
+5. Get back to your daily work 🤷‍♂️
 
 ## Happy Cowin Slot Booking!
