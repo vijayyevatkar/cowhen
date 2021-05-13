@@ -3,7 +3,8 @@ import requests
 import time
 import datetime
 import sys
-from subprocess import check_call
+import subprocess
+import os
 
 headers_dict = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
@@ -55,12 +56,12 @@ if mode == 2:
 # On windows:
 def windowsClip(txt):
     cmd='echo '+txt.strip()+'|clip'
-    return check_call(cmd, shell=True)
+    return subprocess.check_call(cmd, shell=True)
 
 # On Mac
 def macbookClip(txt):
     process = subprocess.Popen('pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=subprocess.PIPE)
-    return process.communicate(mob.encode('utf-8'))
+    return process.communicate(txt.encode('utf-8'))
 
 # sendOtp(mobile, 1) => For Mac
 # sendOtp(mobile, 2) => For Windows
@@ -90,17 +91,17 @@ while True:
     for dateItem in dateArray:
         k+=1
         url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+str(district_id)+"&date="+str(dateItem)
-        # print("Requesting the url: "+url)
+        print("Requesting the url: "+url)
         print("District: "+str(district_id)+", Date: "+str(dateItem))
         response = requests.get(url,headers=headers_dict)
         answers = []
-        # print("Res status:" + str(response.status_code))
+        print("Res status:" + str(response.status_code))
         if response.status_code == 200:
             try:
                 items = response.json()['sessions']
-                # print(items)
+                print(items)
                 for item in items:
-                    if item['min_age_limit'] < 45:
+                    if item['min_age_limit'] == 45:
                         center = str(item['name'])+", "+str(item['address'])+", "+str(item['date'])+", "+str(item['pincode'])
                         answers.append(center)
                 if len(answers)>0:
@@ -109,16 +110,17 @@ while True:
                         i=i+1
                         title = "New Slot-"+str(k)
                         message = answer
-                        if mode == 1:                        
+                        if mode == 1:
+                            print("ayo, mode is: "+str(mode))                    
                             command = f''' osascript -e 'display notification "{message}" with title "{title}"' '''
                             os.system(command)
+                            print("eyo")
                         else:
                             notification.notify(title= title,message= message,app_icon = None,timeout= 3600,toast=False)
                         sendOtp(mob_num)
-            except:
-                print('Failed while parsing the response. Create issue here: '+"https://github.com/vijayyevatkar/macbook-cowin-reminder/issues")
-                e = sys.exc_info()[0]
-                print(e)
+            except Exception as e:
+                print('\nFailed while parsing the response. Create issue here: '+"https://github.com/vijayyevatkar/macbook-cowin-reminder/issues\n")
+                print(str(e)+"\n")
         else:
             print("Call to Cowin Public API failed. Check if it's down or come back after some time.")
         time.sleep(3)
