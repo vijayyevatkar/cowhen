@@ -1,4 +1,4 @@
-# macbook-cowin-reminder
+# Cowhen? -> The local cowin slot notifier
 A simple Python script to remind you of a vaccination slot in your District
 
 # Instruction Files
