@@ -26,3 +26,4 @@ if installSuccess:
 	message = 'Successfully installed all the dependencies. Please run "remindByDistrict.py"'
 else:
 	message = 'Could not install all the dependencies.\nCreate an issue on: '+"https://github.com/vijayyevatkar/macbook-cowin-reminder/issues"
+print(message)
