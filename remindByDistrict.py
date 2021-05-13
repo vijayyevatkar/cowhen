@@ -4,31 +4,8 @@ import time
 import datetime
 import sys
 from subprocess import check_call
-from plyer import notification
 
 headers_dict = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
-# On windows:
-def windowsClip(txt):
-    cmd='echo '+txt.strip()+'|clip'
-    return check_call(cmd, shell=True)
-
-# On Mac
-def macbookClip(txt):
-    process = subprocess.Popen('pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=subprocess.PIPE)
-    return process.communicate(mob.encode('utf-8'))
-
-# sendOtp(mobile, 1) => For Mac
-# sendOtp(mobile, 2) => For Windows
-def sendOtp(mobile, mode=1):
-    mob = str(mobile)
-    print("Opening browser.")
-    webUrl = 'https://selfregistration.cowin.gov.in/'
-    webbrowser.open(webUrl,new=2)
-    temp = macbookClip(mob) if mode==1 else windowsClip(mob)
-    print('Browser Opened, copied your number to clipboard. Just paste and hit Get OTP')
-    print('Timing out for 200 secs') # Cowin waits for 180 secs after it sends OTP
-    time.sleep(200)
 
 path = "districts.csv"
 file2 = open(path,"r+")
@@ -36,6 +13,13 @@ valid_district_ids = [int(i) for i in file2.read().split(',')]
 
 goAhead = False
 trueList = ['','Y','y','Yes','yes','YEs','yEs','YeS','yeS','YES','yES']
+
+# Default values
+mode = 1
+district_id = 278
+num_days = 5
+mob_num = ''
+
 while not goAhead:
     # Get the system mode 
     system = input('Enter System Mode (Default is Macbook: 1), Enter 2 for Windows: ')
@@ -59,14 +43,42 @@ while not goAhead:
 
     # Get the mobile number for copying it to clipboard
     mob_num = input('Enter mobile number for clipboard copy: ')
-    print('\n===== Information Entered =====')
+    print('\n===== Information Entered =====\n')
     book = 'Macbook' if mode == 1 else 'Windows'
-    print('System: Windows\nDistrict: {0}\nCheck slot for days: {1}\nClipboard Mobile Number: {2}\n'.format(district_id,num_days,mob_num))
+    print('System: {0}\nDistrict: {1}\nCheck slot for days: {2}\nClipboard Mobile Number: {3}\n'.format(book,district_id,num_days,mob_num))
     userConfirmation = input('Press enter to continue if above information is correct. No otherwise: ')
     goAhead = True if userConfirmation in trueList else False
 
+if mode == 2:
+    from plyer import notification
+
+# On windows:
+def windowsClip(txt):
+    cmd='echo '+txt.strip()+'|clip'
+    return check_call(cmd, shell=True)
+
+# On Mac
+def macbookClip(txt):
+    process = subprocess.Popen('pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=subprocess.PIPE)
+    return process.communicate(mob.encode('utf-8'))
+
+# sendOtp(mobile, 1) => For Mac
+# sendOtp(mobile, 2) => For Windows
+def sendOtp(mobile, mode=1):
+    mob = str(mobile)
+    print("Opening browser.")
+    webUrl = 'https://selfregistration.cowin.gov.in/'
+    webbrowser.open(webUrl,new=2)
+    temp = macbookClip(mob) if mode==1 else windowsClip(mob)
+    print('Browser Opened, copied your number to clipboard. Just paste and hit Get OTP')
+    print('Timing out for 200 secs') # Cowin waits for 180 secs after it sends OTP
+    time.sleep(200)
+
+# =======================
+# Start the slot notifier
+# =======================
 k = 0
-print("\nStarting -- (Hit ^C to stop)\n===================================\n")
+print("\n===================================\nStarting -- (Hit ^C to stop)\n===================================\n")
 while True:
     today = datetime.date.today()
     dateArray = []
