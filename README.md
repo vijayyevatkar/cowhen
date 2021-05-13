@@ -2,10 +2,10 @@
 A simple Python script to remind you of a vaccination slot in your District
 
 # Instruction Files
-1. Refer your district_id from the ```districtNames.txt``` file where you want to check the slots before running the script.
-2. (Optional) You can enter your phone number to copy it to the clipboard. Just follow the instructions after running the script.
-   Once a slot is found, the cowin portal is opened automatically and your mobile number is copied to the clipboard.
-   All you have to do is just paste it, click on Get OTP and then book the slot quickly.
+1. Refer your district_id from the ```districtNames.txt``` file where you want to check the slots before running the script.   
+2. (Optional) You can enter your phone number to copy it to the clipboard. Just follow the instructions after running the script.   
+   Once a slot is found, the cowin portal is opened automatically and your mobile number is copied to the clipboard.   
+   All you have to do is just paste it, click on Get OTP and then book the slot quickly.   
 
 # Pre-requisites
 1. Python3 is required to run the packages and install dependencies.
