@@ -63,9 +63,9 @@ def macbookClip(txt):
     process = subprocess.Popen('pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=subprocess.PIPE)
     return process.communicate(txt.encode('utf-8'))
 
-# sendOtp(mobile, 1) => For Mac
-# sendOtp(mobile, 2) => For Windows
-def sendOtp(mobile, mode=1):
+# openBrowser(mobile, 1) => For Mac
+# openBrowser(mobile, 2) => For Windows
+def openBrowser(mobile, mode=1):
     mob = str(mobile)
     print("Opening browser.")
     webUrl = 'https://selfregistration.cowin.gov.in/'
@@ -91,17 +91,17 @@ while True:
     for dateItem in dateArray:
         k+=1
         url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+str(district_id)+"&date="+str(dateItem)
-        print("Requesting the url: "+url)
+        # print("Requesting the url: "+url)
         print("District: "+str(district_id)+", Date: "+str(dateItem))
         response = requests.get(url,headers=headers_dict)
         answers = []
-        print("Res status:" + str(response.status_code))
+        # print("Res status:" + str(response.status_code))
         if response.status_code == 200:
             try:
                 items = response.json()['sessions']
-                print(items)
+                # print(items)
                 for item in items:
-                    if item['min_age_limit'] == 45:
+                    if item['min_age_limit'] < 45:
                         center = str(item['name'])+", "+str(item['address'])+", "+str(item['date'])+", "+str(item['pincode'])
                         answers.append(center)
                 if len(answers)>0:
@@ -117,7 +117,7 @@ while True:
                             print("eyo")
                         else:
                             notification.notify(title= title,message= message,app_icon = None,timeout= 3600,toast=False)
-                        sendOtp(mob_num)
+                        openBrowser(mob_num,mode)
             except Exception as e:
                 print('\nFailed while parsing the response. Create issue here: '+"https://github.com/vijayyevatkar/macbook-cowin-reminder/issues\n")
                 print(str(e)+"\n")
