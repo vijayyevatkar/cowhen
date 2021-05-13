@@ -23,7 +23,7 @@ A simple Python script to remind you of a vaccination slot in your District
 1. Install Python3 (Skip this if you have python3):  
    a. Just Open command prompt and type "python3" and hit enter. Microsoft store will be opened and python3 is free there. Just click on install!
 2. Open Command Prompt on Windows and run the following.  
-   $ python3 install.py     
+   $ python3 installDependencies.py     
    $ python3 remindByDistrict.py    
 3. Follow on screen instructions and the script will keep running in the background.
 4. Get back to your daily work 🤷‍♂️
